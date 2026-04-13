@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Brand Style Sheet Template — For Designers</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:      #07080C;
+    --black2:     #0D0F17;
+    --white:      #F0F0F8;
+    --blue:       #1A4FFF;
+    --blue2:      #2E5FFF;
+    --blueglow:   #4D7FFF;
+    --bluedim:    rgba(26,79,255,0.10);
+    --blueborder: rgba(26,79,255,0.22);
+    --gray:       #5A5A70;
+    --gray2:      #3A3A50;
+    --border:     rgba(255,255,255,0.06);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(7,8,12,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--white);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-logo .accent { color: var(--blue); }
+
+  .nav-cta {
+    background: var(--blue);
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 24px rgba(26,79,255,0.3);
+  }
+  .nav-cta:hover { background: var(--blue2); box-shadow: 0 0 36px rgba(26,79,255,0.5); }
+
+  /* ── DIVIDERS ── */
+  .divider { width: 100%; height: 1px; background: var(--border); }
+  .divider-blue {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blue), transparent);
+    opacity: 0.3;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 48px; max-width: 900px; margin: 0 auto; }
+
+  /* ── SECTION TAG ── */
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--blueglow);
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-tag::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--blue);
+    flex-shrink: 0;
+  }
+
+  /* ══════════════════════════════════
+     SCROLL REVEAL SYSTEM
+  ══════════════════════════════════ */
+  .sr {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+                transform 0.75s cubic-bezier(0.16,1,0.3,1);
+  }
+  .sr.left  { transform: translateX(-28px); }
+  .sr.scale { transform: scale(0.95) translateY(16px); }
+  .sr.in    { opacity: 1; transform: none; }
+
+  .sr.d1 { transition-delay: 0.05s; }
+  .sr.d2 { transition-delay: 0.13s; }
+  .sr.d3 { transition-delay: 0.21s; }
+  .sr.d4 { transition-delay: 0.29s; }
+  .sr.d5 { transition-delay: 0.37s; }
+  .sr.d6 { transition-delay: 0.45s; }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 180px;
+    padding-bottom: 100px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 100px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(ellipse, rgba(26,79,255,0.09) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero > * { position: relative; z-index: 1; }
+
+  /* Hero badge */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--blueglow);
+    text-transform: uppercase;
+    border: 1px solid var(--blueborder);
+    padding: 7px 18px;
+    margin-bottom: 40px;
+    background: var(--bluedim);
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    background: var(--blue);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--blue);
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--blue); }
+    50%       { opacity: 0.25; box-shadow: 0 0 2px var(--blue); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Hero h1 — letter by letter animation */
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(72px, 12vw, 128px);
+    font-weight: 800;
+    line-height: 0.88;
+    letter-spacing: -3px;
+    color: var(--white);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .hero h1 .word {
+    display: block;
+    overflow: hidden;
+  }
+
+  .hero h1 .word span {
+    display: block;
+    animation: slideUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  .hero h1 .w1 span { animation-delay: 0.1s; }
+  .hero h1 .w2 span { animation-delay: 0.22s; }
+  .hero h1 .w3 span { animation-delay: 0.34s; }
+
+  @keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0);   opacity: 1; }
+  }
+
+  .hero h1 .blue-word { color: var(--blue); text-shadow: 0 0 80px rgba(26,79,255,0.4); }
+  .hero h1 .outline-word {
+    -webkit-text-stroke: 1.5px rgba(255,255,255,0.13);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--gray);
+    max-width: 500px;
+    margin: 28px auto 52px;
+    font-weight: 300;
+    line-height: 1.8;
+    animation: fadeUp 0.6s ease 0.5s both;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 500; }
+
+  .hero-details {
+    display: flex;
+    border: 1px solid var(--border);
+    max-width: 540px;
+    margin: 0 auto 48px;
+    animation: fadeUp 0.6s ease 0.6s both;
+  }
+
+  .detail-item {
+    padding: 18px 20px;
+    border-right: 1px solid var(--border);
+    flex: 1;
+    text-align: center;
+  }
+  .detail-item:last-child { border-right: none; }
+
+  .detail-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--gray2);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .detail-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .hero-btn {
+    display: block;
+    max-width: 360px;
+    margin: 0 auto 16px;
+    background: var(--blue);
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 18px 44px;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 8px 40px rgba(26,79,255,0.35);
+    animation: fadeUp 0.6s ease 0.7s both;
+  }
+  .hero-btn:hover {
+    background: var(--blue2);
+    box-shadow: 0 8px 64px rgba(26,79,255,0.55);
+    transform: translateY(-2px);
+  }
+
+  .hero-note {
+    font-size: 11px;
+    color: var(--gray2);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+    animation: fadeUp 0.6s ease 0.8s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── STATS ── */
+  .stats { padding: 60px 48px; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--blueborder);
+    background: var(--bluedim);
+  }
+
+  .stat {
+    padding: 40px 28px;
+    border-right: 1px solid var(--blueborder);
+    text-align: center;
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--blue);
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 8px;
+    text-shadow: 0 0 40px rgba(26,79,255,0.35);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* ── PROBLEM ── */
+  .problem h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--white);
+    margin-bottom: 36px;
+    max-width: 580px;
+  }
+
+  .problem-body {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.9;
+    max-width: 600px;
+    font-weight: 300;
+  }
+  .problem-body p { margin-bottom: 20px; }
+  .problem-body p:last-child { margin-bottom: 0; }
+  .problem-body strong { color: var(--white); font-weight: 500; }
+
+  /* ── INSIDE ── */
+  .inside h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--white);
+    margin-bottom: 52px;
+    max-width: 560px;
+  }
+
+  .inside-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .inside-item {
+    background: var(--black);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+  }
+  .inside-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 0;
+    background: var(--blue);
+    transition: height 0.35s ease;
+  }
+  .inside-item:hover { background: var(--black2); }
+  .inside-item:hover::before { height: 100%; }
+
+  .inside-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--blue);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    opacity: 0.5;
+  }
+
+  .inside-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .inside-desc {
+    font-size: 13px;
+    color: var(--gray);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  /* ── PREVIEW ── */
+  .preview {
+    padding: 80px 48px;
+    background: var(--black2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .preview-inner { max-width: 900px; margin: 0 auto; }
+
+  .template-mock {
+    border: 1px solid var(--blueborder);
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(26,79,255,0.07);
+  }
+
+  .mock-header {
+    background: var(--blue);
+    padding: 14px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mock-header span {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--white);
+  }
+  .mock-header small {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .mock-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--blueborder);
+  }
+
+  .mock-cell {
+    background: var(--black);
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: var(--gray2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .mock-cell.dark   { background: var(--black2); }
+  .mock-cell.accent { background: rgba(26,79,255,0.05); color: rgba(77,127,255,0.45); }
+  .mock-cell.full {
+    grid-column: 1 / -1;
+    background: rgba(26,79,255,0.07);
+    color: rgba(77,127,255,0.35);
+  }
+  .mock-cell .cell-num {
+    position: absolute;
+    top: 8px; left: 10px;
+    font-size: 7px;
+    color: var(--gray2);
+    opacity: 0.35;
+  }
+
+  /* ── FAQ ── */
+  .faq h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--white);
+    margin-bottom: 52px;
+  }
+
+  .faq-item { border-top: 1px solid var(--border); }
+  .faq-item:last-child { border-bottom: 1px solid var(--border); }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    padding: 24px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    transition: color 0.2s;
+  }
+  .faq-q:hover { color: var(--blueglow); }
+
+  .faq-icon {
+    font-size: 22px;
+    color: var(--blue);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    font-weight: 300;
+    line-height: 1;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .faq-a {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 300;
+    line-height: 1.8;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 24px; }
+
+  /* ── REGISTER ── */
+  .register {
+    text-align: center;
+    padding: 120px 48px;
+    position: relative;
+    overflow: hidden;
+    background: var(--black2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .register::before {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 500px;
+    background: radial-gradient(ellipse, rgba(26,79,255,0.13) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .register > * { position: relative; z-index: 1; }
+
+  .register .section-tag {
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .register .section-tag::after {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--blue);
+    flex-shrink: 0;
+  }
+
+  .register h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(44px, 7vw, 84px);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -3px;
+    color: var(--white);
+    margin-bottom: 18px;
+  }
+
+  .register p {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 44px;
+    font-weight: 300;
+  }
+
+  .register-btn {
+    display: block;
+    max-width: 420px;
+    margin: 0 auto 18px;
+    background: var(--blue);
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 20px 52px;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 8px 48px rgba(26,79,255,0.4);
+  }
+  .register-btn:hover {
+    background: var(--blue2);
+    box-shadow: 0 8px 64px rgba(26,79,255,0.6);
+    transform: translateY(-2px);
+  }
+
+  .register-note {
+    display: block;
+    font-size: 11px;
+    color: var(--gray2);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    padding: 100px 48px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .final-cta h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 400;
+    color: var(--gray);
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+  }
+
+  .final-cta h2 strong {
+    font-weight: 800;
+    color: var(--white);
+    display: block;
+    font-size: clamp(44px, 6.5vw, 72px);
+    letter-spacing: -2.5px;
+    line-height: 0.95;
+    margin-top: 6px;
+    margin-bottom: 52px;
+  }
+  .final-cta h2 strong .blue-word { color: var(--blue); }
+
+  .final-btn {
+    display: block;
+    max-width: 340px;
+    margin: 0 auto;
+    background: transparent;
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    text-decoration: none;
+    border: 1px solid var(--blueborder);
+    transition: all 0.25s;
+  }
+  .final-btn:hover {
+    border-color: var(--blue);
+    color: var(--blueglow);
+    box-shadow: 0 0 28px rgba(26,79,255,0.2);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gray2);
+    letter-spacing: 1px;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 640px) {
+    nav { padding: 16px 20px; }
+    .nav-logo { font-size: 13px; }
+    section { padding: 72px 20px; }
+    .stats { padding: 48px 20px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid var(--blueborder); }
+    .stat:last-child { border-bottom: none; }
+    .inside-grid { grid-template-columns: 1fr; }
+    .hero-details { flex-direction: column; max-width: 100%; }
+    .detail-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .detail-item:last-child { border-bottom: none; }
+    .preview { padding: 60px 20px; }
+    .register { padding: 80px 20px; }
+    .final-cta { padding: 72px 20px; }
+    footer { padding: 24px 20px; }
+    .mock-grid { grid-template-columns: 1fr; }
+    .mock-cell.full { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">The_<span class="accent">brandweaver</span></a>
+  <a href="https://wa.me/2347044611667?text=TEMPLATE" class="nav-cta">Get It Free →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><div class="dot"></div>Free Template for Designers</div>
+  <h1>
+    <div class="word w1"><span class="outline-word">Brand</span></div>
+    <div class="word w2"><span class="blue-word">Style</span></div>
+    <div class="word w3"><span>Sheet</span></div>
+  </h1>
+  <p class="hero-sub">
+    The quick reference every designer should give their client — so <strong>anyone working on the brand stays consistent</strong> without reading a 30-page guideline.
+  </p>
+  <div class="hero-details">
+    <div class="detail-item">
+      <div class="detail-label">Format</div>
+      <div class="detail-val">PDF</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Pages</div>
+      <div class="detail-val">2 Pages</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Price</div>
+      <div class="detail-val">Free</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Via</div>
+      <div class="detail-val">WhatsApp</div>
+    </div>
+  </div>
+  <a href="https://wa.me/2347044611667?text=TEMPLATE" class="hero-btn">Get the Free Template →</a>
+  <span class="hero-note">Send "TEMPLATE" on WhatsApp — takes 10 seconds</span>
+</section>
+
+<div class="divider-blue"></div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat sr d1">
+      <div class="stat-num" data-count="2">2</div>
+      <div class="stat-label">Clean pages covering everything your client needs</div>
+    </div>
+    <div class="stat sr d2">
+      <div class="stat-num" data-count="11">11</div>
+      <div class="stat-label">Sections from logos to tone of voice and mockups</div>
+    </div>
+    <div class="stat sr d3">
+      <div class="stat-num">0₦</div>
+      <div class="stat-label">Cost — completely free, no strings attached</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="section-tag sr left">The Problem</div>
+  <h2 class="sr">You finished the project. But the brand keeps getting misused.</h2>
+  <div class="problem-body sr">
+    <p>You delivered the logo. You handed over the files. You even sent the full brand guidelines document. But three months later, the client's social media manager is using the wrong colours. A new designer they hired stretched the logo. Someone printed the brand in a completely different font.</p>
+    <p>And they come back to you — frustrated — like it's your fault.</p>
+    <p>The problem isn't the guidelines. <strong>It's that nobody reads a 30-page document.</strong> What people actually need is a quick, visual reference they can look at in 60 seconds and know exactly how to use the brand correctly.</p>
+    <p>That's what a Brand Style Sheet is. <strong>A one-stop snapshot of the brand</strong> — for every designer, marketer, or collaborator who ever touches it.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside">
+  <div class="section-tag sr left">What's Inside</div>
+  <h2 class="sr">Every section a designer and collaborator needs.</h2>
+  <div class="inside-grid">
+    <div class="inside-item sr d1">
+      <div class="inside-num">01</div>
+      <div class="inside-title">Logo Usage</div>
+      <div class="inside-desc">Primary, secondary, vertical logo — plus icons and usage rules in one place.</div>
+    </div>
+    <div class="inside-item sr d2">
+      <div class="inside-num">02</div>
+      <div class="inside-title">Brand Colours</div>
+      <div class="inside-desc">Full colour palette laid out clearly so no one ever uses the wrong shade again.</div>
+    </div>
+    <div class="inside-item sr d3">
+      <div class="inside-num">03</div>
+      <div class="inside-title">Typography</div>
+      <div class="inside-desc">Primary and secondary fonts with heading, body, and caption scale defined.</div>
+    </div>
+    <div class="inside-item sr d4">
+      <div class="inside-num">04</div>
+      <div class="inside-title">Photography Style</div>
+      <div class="inside-desc">Visual direction for imagery — mood, lighting, composition, and what to avoid.</div>
+    </div>
+    <div class="inside-item sr d5">
+      <div class="inside-num">05</div>
+      <div class="inside-title">Brand Tone & Voice</div>
+      <div class="inside-desc">How the brand communicates — the tone, keywords, and phrases to never use.</div>
+    </div>
+    <div class="inside-item sr d6">
+      <div class="inside-num">06</div>
+      <div class="inside-title">Mockups & Pattern</div>
+      <div class="inside-desc">5 mockup slots and a brand pattern section to show the identity in context.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PREVIEW -->
+<div class="preview">
+  <div class="preview-inner">
+    <div class="section-tag sr left">Template Preview</div>
+    <div class="template-mock sr scale">
+      <div class="mock-header">
+        <span>BRAND STYLE SHEET</span>
+        <small>Free Template</small>
+      </div>
+      <div class="mock-grid">
+        <div class="mock-cell accent"><span class="cell-num">01</span>Primary Logo</div>
+        <div class="mock-cell dark"><span class="cell-num">02</span>Secondary Logo</div>
+        <div class="mock-cell"><span class="cell-num">03</span>Icons</div>
+        <div class="mock-cell dark"><span class="cell-num">04</span>Brand Pattern</div>
+        <div class="mock-cell full"><span class="cell-num">05</span>Brand Colours</div>
+        <div class="mock-cell dark"><span class="cell-num">06</span>Primary Font</div>
+        <div class="mock-cell accent"><span class="cell-num">07</span>Secondary Font</div>
+        <div class="mock-cell"><span class="cell-num">08</span>Photography Style</div>
+        <div class="mock-cell dark"><span class="cell-num">09</span>Brand Tone & Voice</div>
+        <div class="mock-cell full"><span class="cell-num">10</span>Mockups</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="section-tag sr left">Questions</div>
+  <h2 class="sr">Frequently asked.</h2>
+  <div class="faq-item sr d1">
+    <button class="faq-q">Is this really free? <span class="faq-icon">+</span></button>
+    <div class="faq-a">Yes. No catch, no card, no email opt-in. Just send "TEMPLATE" on WhatsApp and I'll send it straight to you.</div>
+  </div>
+  <div class="faq-item sr d2">
+    <button class="faq-q">Who is this for? <span class="faq-icon">+</span></button>
+    <div class="faq-a">Any designer — brand identity designers, graphic designers, or anyone who delivers branding work to clients and wants to give them a clean reference document going forward.</div>
+  </div>
+  <div class="faq-item sr d3">
+    <button class="faq-q">What format does it come in? <span class="faq-icon">+</span></button>
+    <div class="faq-a">It's a 2-page PDF template. Clean, professional, and ready to fill in with your client's brand details.</div>
+  </div>
+  <div class="faq-item sr d4">
+    <button class="faq-q">What's the difference between this and a brand guideline? <span class="faq-icon">+</span></button>
+    <div class="faq-a">Brand guidelines are detailed and can run 20–50 pages. A Brand Style Sheet is the quick reference version — the snapshot any designer or collaborator can pick up and immediately understand.</div>
+  </div>
+  <div class="faq-item sr d5">
+    <button class="faq-q">Do I need to sign up anywhere? <span class="faq-icon">+</span></button>
+    <div class="faq-a">No. Just send "TEMPLATE" on WhatsApp and you'll receive the PDF directly. No accounts, no email lists, no forms.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REGISTER -->
+<div class="register" id="register">
+  <div class="section-tag">Get the Template</div>
+  <h2 class="sr">Grab your<br>free copy.</h2>
+  <p class="sr">Takes 10 seconds. No form, no email, no card.</p>
+  <a href="https://wa.me/2347044611667?text=TEMPLATE" class="register-btn sr">Send "TEMPLATE" on WhatsApp →</a>
+  <span class="register-note sr">You'll receive the PDF immediately after.</span>
+</div>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2 class="sr">
+    Stop letting your brand work get misused.
+    <strong>Give every collaborator this <span class="blue-word">sheet.</span></strong>
+  </h2>
+  <a href="https://wa.me/2347044611667?text=TEMPLATE" class="final-btn sr">Get It Free →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 The_brandweaver. All rights reserved.</span>
+</footer>
+
+<script>
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── Scroll reveal ──
+  // Use a tiny timeout so elements are fully painted before observing
+  setTimeout(() => {
+    const els = document.querySelectorAll('.sr');
+    if (!els.length) return;
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach(el => io.observe(el));
+  }, 100);
+
+  // ── Counter animation ──
+  const counters = document.querySelectorAll('.stat-num[data-count]');
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      let start = null;
+      const dur = 1400;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 4);
+        el.textContent = Math.floor(ease * target);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      countObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(c => countObserver.observe(c));
+</script>
+</body>
+</html>
